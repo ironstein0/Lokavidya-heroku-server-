@@ -28,6 +28,8 @@ if (!DATABASE_URI) {
 }
 
 var printConfig = function() {
+	console.log('SERVER CONFIG');
+	console.log('-------------');
 	console.log('PORT : ' + PORT);
 	console.log('DATABASE_URI : ' + DATABASE_URI);
 	console.log('CLOUD_URL : ' + CLOUD_URL);
@@ -48,8 +50,6 @@ var api = new ParseServer({
 	}
 });
 
-console.log(api);
-
 // initialize parse
 var Parse = require('parse/node');
 Parse.initialize('app', 'master');
@@ -69,7 +69,7 @@ app.use('/parse', api);
 
 // start http server
 app.listen(PORT, function() {
-  console.log('Node app is running on port' + PORT);
+  console.log('Node app is running on port : ' + PORT);
 });
 
 printConfig();

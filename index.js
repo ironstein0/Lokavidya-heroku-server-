@@ -31,6 +31,7 @@ var app = express();
 
 // default route
 app.get('/', (req, response) => {
+	console.log('request on default route');
 	res.sendFile(path.join(__dirname, 'index.html'));
 });
 

@@ -25,8 +25,15 @@ var api = new ParseServer({
 var Parse = require('parse/node');
 Parse.initialize('app', 'master');
 
-// instantiate express route for parse
+// instantiate express
 var app = express();
+
+// default route
+app.get('/', (req, response) => {
+	res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// instantiate express route for parse
 app.use('/parse', api);
 
 // start http server

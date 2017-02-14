@@ -29,6 +29,10 @@ Parse.initialize('app', 'master');
 // instantiate express
 var app = express();
 
+// Heroku dynamically assigns your app a port, so you can't set the port 
+// to a fixed number. Heroku adds the port to the env, so you can pull it from there.
+app.set('port', (process.env.PORT || 5000));
+
 // default route
 app.get('/', (req, response) => {
 	console.log('request on default route');
@@ -39,6 +43,6 @@ app.get('/', (req, response) => {
 app.use('/parse', api);
 
 // start http server
-app.listen(config.HTTP_SERVER_PORT_NO, function() {
+app.listen(app.get('port'), function() {
   console.log('Node app is running on port', config.HTTP_SERVER_PORT_NO);
 });

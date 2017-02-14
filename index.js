@@ -19,7 +19,8 @@ var api = new ParseServer({
 	databaseURI: config.MONGO_DB_URL,
 	cloud: config.CLOUD_URL,
 	appId: config.APP_ID,
-	masterKey: config.MASTER_KEY
+	masterKey: config.MASTER_KEY,
+	serverURL: config.SERVER_URL + '/' + config.HTTP_SERVER_PORT_NO + '/parse'
 });
 
 var Parse = require('parse/node');
@@ -37,6 +38,6 @@ app.get('/', (req, response) => {
 app.use('/parse', api);
 
 // start http server
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+app.listen(config.HTTP_SERVER_PORT_NO, function() {
+  console.log('Node app is running on port', config.HTTP_SERVER_PORT_NO);
 });

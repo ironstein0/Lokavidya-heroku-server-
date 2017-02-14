@@ -23,7 +23,7 @@ const APP_ID = process.env.APP_ID || config.APP_ID;
 const MASTER_KEY = process.env.masterKey || config.MASTER_KEY;
 const SERVER_URL = process.env.SERVER_URL || 'http://localhost:' + PORT + '/parse';
 
-if (!databaseUri) {
+if (!DATABASE_URI) {
   throw new Error('DATABASE_URI not specified');
 }
 

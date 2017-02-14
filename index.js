@@ -34,7 +34,7 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 
 // default route
-app.get('/', (req, response) => {
+app.get('/', (req, res) => {
 	console.log('request on default route');
 	res.sendFile(path.join(__dirname, 'index.html'));
 });

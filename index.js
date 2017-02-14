@@ -37,10 +37,6 @@ app.get('/', (req, response) => {
 app.use('/parse', api);
 
 // start http server
-var httpServer = require('http').createServer(app);
-httpServer.listen(config.HTTP_SERVER_PORT_NO, function() {
-	console.log('parse server running on port ' + config.HTTP_SERVER_PORT_NO);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
-
-// start parse liveQuery server
-ParseServer.createLiveQueryServer(httpServer);

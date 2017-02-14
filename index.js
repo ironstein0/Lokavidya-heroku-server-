@@ -39,6 +39,8 @@ var api = new ParseServer({
 	}
 });
 
+console.log(api);
+
 // initialize parse
 var Parse = require('parse/node');
 Parse.initialize('app', 'master');

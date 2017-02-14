@@ -19,11 +19,7 @@ var api = new ParseServer({
 	databaseURI: config.MONGO_DB_URL,
 	cloud: config.CLOUD_URL,
 	appId: config.APP_ID,
-	masterKey: config.MASTER_KEY,
-	serverURL: config.HTTP_SERVER_URL + ':' + config.HTTP_SERVER_PORT_NO + '/parse',
-	liveQuery: {
-		classNames: ["posts", "comments"]
-	}
+	masterKey: config.MASTER_KEY
 });
 
 var Parse = require('parse/node');

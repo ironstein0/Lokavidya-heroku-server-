@@ -2,7 +2,6 @@
 	"APP_ID": "E326aPk7hT5OLpUt7URw",
 	"MASTER_KEY": "master",
 	"MONGO_DB_URL": "mongodb://heroku_64g37073:j4kq41uvrk63alh6coh0oveqbe@ds163698.mlab.com:63698/heroku_64g37073",
-	"HTTP_SERVER_URL": "https://agile-thicket-17455.herokuapp.com",
 	"HTTP_SERVER_PORT_NO": 1338,
 	"CLOUD_URL": "./cloud/main.js"
 }

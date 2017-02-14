@@ -20,7 +20,7 @@ var api = new ParseServer({
 	cloud: config.CLOUD_URL,
 	appId: config.APP_ID,
 	masterKey: config.MASTER_KEY,
-	serverURL: config.SERVER_URL + '/' + config.HTTP_SERVER_PORT_NO + '/parse'
+	serverURL: config.SERVER_URL + '/parse'
 });
 
 var Parse = require('parse/node');

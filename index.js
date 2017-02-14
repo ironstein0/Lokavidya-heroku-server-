@@ -14,24 +14,38 @@ try {
 	throw(err);
 }
 
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// Heroku dynamically assigns your app a port, so you can't set the port 
+// to a fixed number. Heroku adds the port to the env, so you can pull it from there.
+var port = process.env.PORT || 5000;
+var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
+var cloudUri = process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js';
+var appId = process.env.APP_ID || config.APP_ID;
+var masterKey = process.env.masterKey || config.MASTER_KEY;
+var serverUrl = process.env.SERVER_URL || 'http://localhost:' + port + '/parse';
+
+if (!databaseUri) {
+  throw new Error('DATABASE_URI not specified');
+}
+
+// generate parse-server middleware
 var api = new ParseServer({
-	databaseURI: config.MONGO_DB_URL,
-	cloud: config.CLOUD_URL,
-	appId: config.APP_ID,
-	masterKey: config.MASTER_KEY,
-	serverURL: config.SERVER_URL + '/parse'
+	databaseURI: databaseUri,
+	cloud: cloudUri
+	appId: appId,
+	masterKey: masterKey,
+	serverURL: serverUrl,
+	liveQuery: {
+		classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
+	}
 });
 
+// initialize parse
 var Parse = require('parse/node');
 Parse.initialize('app', 'master');
 
 // instantiate express
 var app = express();
-
-// Heroku dynamically assigns your app a port, so you can't set the port 
-// to a fixed number. Heroku adds the port to the env, so you can pull it from there.
-app.set('port', (process.env.PORT || 5000));
+app.set('port', port);
 
 // default route
 app.get('/', (req, res) => {
@@ -43,6 +57,6 @@ app.get('/', (req, res) => {
 app.use('/parse', api);
 
 // start http server
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', config.HTTP_SERVER_PORT_NO);
+app.listen(port, function() {
+  console.log('Node app is running on port' + port);
 });

@@ -1,0 +1,3 @@
+[submodule "Lokavidya-heroku-server"]
+	path = Lokavidya-heroku-server
+	url = https://github.com/RiyanshKarani011235/Lokavidya-heroku-server
